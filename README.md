@@ -257,11 +257,3 @@ loop with real agent feedback.
 8. **Distillation.** Once the system is stable, use `BootstrapFinetune` to distill into a smaller/cheaper model for the request path; keep the big model only in optimization runs.
 
 ---
-
-## Talking points for the live walkthrough
-
-- *Routing is in code, not in a prompt* (`compute_thread_stats` + module dispatch). The LLM does the analysis; deterministic Python decides which analyst to call.
-- *Two Signatures, one Module, one route* — clean separation, each Signature is independently optimizable.
-- *The metric is the spec.* Show `eval/metrics.py` and explain why each component exists. The composite is what stops the optimizer from cheating on one field at the cost of another.
-- *Show `dspy.inspect_history()`* during the demo — proves the prompts are real and shows what MIPRO rewrote (after compile).
-- *Edge cases* in `tests/fixtures/threads.py` are the assignment's "does the prompt hold up?" question made concrete and testable.
